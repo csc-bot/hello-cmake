@@ -1,0 +1,19 @@
+name: Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install clang-format
+        run: sudo apt install clang-format-12
+
+      - name: Check codestyle
+        run: git ls-files *.{cpp,hpp} | xargs clang-format-12 -i && git diff --exit-code
+
+      - name: Build application
+        run: ./build.sh
