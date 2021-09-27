@@ -15,5 +15,8 @@ jobs:
       - name: Check codestyle
         run: git ls-files *.{cpp,hpp} | xargs clang-format-12 -i && git diff --exit-code
 
+      - name: Install clang-tidy
+        run: sudo apt install clang-tidy
+
       - name: Build application
         run: ./build.sh
